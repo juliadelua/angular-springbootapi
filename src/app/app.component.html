@@ -1,4 +1,28 @@
 <hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<hr />
+
+<div *ngIf="!auth">
+  <div>Usuário:</div>
+  <div><input type="text" [(ngModel)]="login" /></div>
+  <div>Senha:</div>
+  <div><input type="password" [(ngModel)]="password" /></div>
+  <hr />
+  <div><input type="button" value="Enter" (click)="postLogin()" /></div>
+</div>
+
+<!--
+  1) primeiro endpoint --
+  https://glacial-scrubland-11809.herokuapp.com/login 
+  
+  -> request post: manda um login e uma senha em um json: {
+      "login": "ajsdhfg",
+      "senha": "234567jdfgh"
+    }
+    devolve um json com "token", "username" e um profile que é um array com os perfis de acesso do usuario (eg. admin)
+
+  2) segundo endpoint
+  /pessoas_fisicas
+    -> request get
+  devolve um array com id, nome, etc etc
+
+-->
