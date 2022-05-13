@@ -19,11 +19,14 @@ export class AppComponent {
   login = 'ricardo.larguesa@fatec.sp.gov.br';
   password = '123456';
 
+  list = null;
+
   auth = null; // objeto para armazenar os dados, variavel de controle, colocar em if para mostrar o form de autenticação ou o site
 
   constructor(private http: HttpClient) {}
 
   postLogin() {
+    // atribue o auth
     this.http
       .post<Auth>(this.site + 'login', {
         login: this.login,
@@ -35,6 +38,17 @@ export class AppComponent {
   }
 
   postLogout() {
+    // nulifica o auth
     this.auth = null;
+  }
+
+  getPessoas() {
+    this.http
+      .get<any>(this.site + 'pessoas_fisicas', {
+        headers: { Authorization: 'Bearer ' + this.auth.token },
+      })
+      .subscribe((data) => {
+        this.list = data;
+      });
   }
 }

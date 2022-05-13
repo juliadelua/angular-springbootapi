@@ -10,6 +10,32 @@
   <div><input type="button" value="Enter" (click)="postLogin()" /></div>
 </div>
 
+<div *ngIf="auth">
+  <div>Bem-vinde, {{ auth.username }}!</div>
+  <hr />
+  <div><input type="button" value="Logout" (click)="postLogout()" /></div>
+  <hr />
+  <div>
+    <button (click)="getPessoas()">Fetch</button>
+    <div *ngIf="list">
+      <h2>Lista de Cadastrados</h2>
+      <table>
+        <tr>
+          <th>Id:</th>
+          <th>Nome:</th>
+          <th>Endereço:</th>
+        </tr>
+        <tr *ngFor="let pessoa of list">
+          <td>{{ pessoa['id'] }}</td>
+          <td>{{ pessoa['nome'] }}</td>
+          <td>{{ pessoa['endereco'] }}</td>
+        </tr>
+        <!-- aqui o pessoa é com [] (pessoa['id']) pois é uma array de any, e não declarado uma array de objetos específicos. -->
+      </table>
+    </div>
+  </div>
+</div>
+
 <!--
   1) primeiro endpoint --
   https://glacial-scrubland-11809.herokuapp.com/login 
