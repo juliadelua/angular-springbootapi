@@ -42,7 +42,7 @@ export class AppComponent {
     this.auth = null;
   }
 
-  getPessoas() {
+  getList() {
     this.http
       .get<any>(this.site + 'pessoas_fisicas', {
         headers: { Authorization: 'Bearer ' + this.auth.token },
