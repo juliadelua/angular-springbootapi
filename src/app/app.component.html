@@ -11,6 +11,7 @@
 </div>
 
 <div *ngIf="auth">
+  <!-- colocar o router outlet aqui após logado -->
   <div>Bem-vinde, {{ auth.username }}!</div>
   <hr />
   <div><input type="button" value="Logout" (click)="postLogout()" /></div>
@@ -38,8 +39,7 @@
 
 <!--
   1) primeiro endpoint --
-  https://glacial-scrubland-11809.herokuapp.com/login 
-  
+  /login  
   -> request post: manda um login e uma senha em um json: {
       "login": "ajsdhfg",
       "senha": "234567jdfgh"
